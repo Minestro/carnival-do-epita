@@ -13,9 +13,9 @@ class MinestroPlayer extends Player
     public function getChoice()
     {
         $nbTypes = array(
-            'nbPaper' => 0,
-            'nbRock' => 0,
-            'nbScissors' => 0
+            'paper' => 0,
+            'rock' => 0,
+            'scissors' => 0
         );
 
         $stats = $this->result->getStats();
