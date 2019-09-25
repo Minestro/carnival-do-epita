@@ -9,9 +9,9 @@ class MinestroPlayer extends Player
     protected $mySide;
     protected $opponentSide;
     protected $result;
-    private $historicType;
-    private $historicScore;
-    private $round = 0;
+    private $historicType; // Un array de l'historique des coups joués par type
+    private $historicScore; // Un array de l'historique des scores par joueur
+    private $round = 0; // Le round actuel
 
     public function getChoice()
     {
@@ -19,7 +19,7 @@ class MinestroPlayer extends Player
             'paper' => 0,
             'rock' => 0,
             'scissors' => 0
-        );
+        ); // Cet array contient le total des coups depuis le début de la partie par type
 
         $stats = $this->result->getStats();
         $nbTypes['paper'] = $stats[$this->opponentSide]['paper'];
@@ -29,7 +29,7 @@ class MinestroPlayer extends Player
         $this->historicScore[] = array('a' => $stats['a']['score'], 'b' => $stats['b']['score']);
 
         $nbEvenGames = $this->getNbEvenGames();
-        $diffTypes = $this->getDiffTypes(3);
+        $diffTypes = $this->getDiffTypes(5);
         $lastPlayed = $this->getLastPlayed();
 
         if ($nbEvenGames >= 3) {
@@ -46,7 +46,7 @@ class MinestroPlayer extends Player
         return array_keys($diff, max($diff))[0];
     }
 
-    private function getDiffTypes($delta) {
+    private function getDiffTypes($delta) { // Retourne un array de la différence de coups entre le dernier coup et celui à dernier - delta
         if ($delta > $this->round) {
             return $this->historicType[$this->round];
         }
@@ -60,7 +60,7 @@ class MinestroPlayer extends Player
         return $diff;
     }
 
-    private function getNbEvenGames() {
+    private function getNbEvenGames() { // Combien de coups de suite ont résultés sur des matchs nuls
         $count = 0;
         for ($i = $this->round; $i >=1; $i--){
             if ($this->historicScore[$i] == $this->historicScore[$i-1]) {
@@ -73,7 +73,7 @@ class MinestroPlayer extends Player
         return $count;
     }
 
-    private function getChoiceFromString($string) {
+    private function getChoiceFromString($string) { // Comme on peut pas renvoyer des strings directement...
         switch ($string) {
             case 'paper':
                 return parent::paperChoice();
