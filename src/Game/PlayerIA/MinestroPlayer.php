@@ -33,7 +33,7 @@ class MinestroPlayer extends Player
         $lastPlayed = $this->getLastPlayed();
 
         if ($nbEvenGames >= 3) {
-            $diffTypes[$lastPlayed] -= 1000;
+            $diffTypes[$lastPlayed] += 1000;
         }
 
         $minType = array_keys($diffTypes, min($diffTypes));
