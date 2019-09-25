@@ -3,6 +3,7 @@
 
 namespace Hackathon\PlayerIA;
 use Hackathon\Game\Result;
+use Hackathon\Game\Engine;
 
 class MinestroPlayer extends Player
 {
@@ -15,6 +16,7 @@ class MinestroPlayer extends Player
 
     public function getChoice()
     {
+        //$reflectionProperty = new \ReflectionParameter(array('Hackathon\Game\Engine', 'playOneRound'), 'playerA');
         $nbTypes = array(
             'paper' => 0,
             'rock' => 0,
@@ -29,7 +31,7 @@ class MinestroPlayer extends Player
         $this->historicScore[] = array('a' => $stats['a']['score'], 'b' => $stats['b']['score']);
 
         $nbEvenGames = $this->getNbEvenGames();
-        $diffTypes = $this->getDiffTypes(5);
+        $diffTypes = $this->getDiffTypes(10);
         $lastPlayed = $this->getLastPlayed();
 
         if ($nbEvenGames >= 3) {
