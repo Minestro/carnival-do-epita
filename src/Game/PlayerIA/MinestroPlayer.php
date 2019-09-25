@@ -2,7 +2,7 @@
 
 
 namespace Hackathon\PlayerIA;
-
+use Hackathon\Game\Result;
 
 class MinestroPlayer extends Player
 {
@@ -10,7 +10,7 @@ class MinestroPlayer extends Player
     protected $opponentSide;
     protected $result;
 
-    protected function getChoice()
+    public function getChoice()
     {
         return parent::scissorsChoice();
     }
