@@ -24,6 +24,17 @@ class MinestroPlayer extends Player
         $nbTypes['scissors'] = $stats[$this->opponentSide]['scissors'];
 
         $minType = array_keys($nbTypes, min($nbTypes));
-        return $minType[0];
+        return $this->getChoiceFromString($minType[0]);
+    }
+
+    private function getChoiceFromString($string) {
+        switch ($string) {
+            case 'paper':
+                return parent::paperChoice();
+            case 'rock':
+                return parent::rockChoice();
+            default:
+                return parent::scissorsChoice();
+        }
     }
 }
